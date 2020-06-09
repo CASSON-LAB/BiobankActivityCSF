@@ -1,2 +1,3 @@
 # BiobankActivityCSF
-Code to process the Biobank Activity Records on the UoM CSF
+Code to process the accelerometer CWA files from the UK Biobank activity monitoring study on high performance computing infrastructure. This code has been developed to run on the [UoM CSF3](http://ri.itservices.manchester.ac.uk/csf3/), but this should also work on other high-performance computers that use SGE (which is used at many universities). However, note that some parts of this code are specific to the architecutre of the CSF and may need to be adapted to your specific system. This code can also be run on the [iCSF/incline](http://ri.itservices.manchester.ac.uk/icsf/) (the interative version of the CSF), but the batch scripts will not work on here, and this is recommended only for testing. The pre-processing in this code is based off the [biobankAccelerometerAnalysis](https://github.com/activityMonitoring/biobankAccelerometerAnalysis) from the Aiden Doherty/University of Oxford.
+
