@@ -73,7 +73,7 @@ plt.plot(time, data)
 plt.savefig('example.pdf')
 ```
 
-**CSF3 only** To run your script you need to request an interactive session and import anaconda module
+**CSF3 only** To run your script you need to request an interactive session and import anaconda module. If using the iCSF there is no need to run the first line, code can be run direct.
 
 ```
 qrsh -l short
@@ -91,11 +91,42 @@ If this has worked you should now be ready to run your own code. To do this, del
 
 
 ## Running on the CSF3
-Basic batch script
-Advanced processing
+All commands in this section refer specifically to running the code in the batch enviroment on the UoM CSF3. As stated before, these commmands may be beneficial on other HPC systems.
+**This code must be run on the scratch area on the CSF3 as it generates a large number of temporary files**
+First copy this directory to the scratch storage and move into it
 
-## Additional: Running this code in Anacoda Spyder
-command line arguments
-iCSF3 (module files to load)
+```
+cd ..
+cp -r BiobankActivityCSF/ scratch/
+cd ~/scratch/BiobankActivityCSF/
+```
+
+# Basic batch script
+The file biobankBasic.sh contains a script to process a single CWA file on the CSF. To run this, ensure your files are in the scratch directory, and it. If it was sucesssfully submitted then you should see a command saying that it has been submitted.
+
+```
+$ qsub biobankBasic.sh
+Your job 1316327 ("biobankBasic.sh") has been submitted
+```
+
+There is more information on checking status of your jobs on the [CSF3 documentation](http://ri.itservices.manchester.ac.uk/csf3/getting-started/connecting/), but for now you can check on your job by running `qsub` and if nothing is returned it has either finished or failed. Once the job has finished, check the standard output and standard error files (those ending in .oXXXXXX and .eXXXXXX respectively (where XXXXXX is the job number assigned to your job).
+
+# Higher throughput processing
+To run the higher throughput script you first need a text file containing the file names of all the CWA files you want to process. This will depend on your unique application and the eids of the participants are randomised for each project. This file should be named to_process.txt
+The script biobankBatch.sh creates an SGE job array allowing the processing of multiple files across multiple jobs in order to signficantly speed up processing.
+
+This file will need modification to adapt it for the number of files you want to process.
+
+Firstly, the range on line 3 describes how many separate jobs in the array to create. Ideally, you would make this number as large as possible (as the larger the more jobs that will run), but make it too high and jobs will just sit and wait in the queue. Previously I have found that 100 was optimum for me, but you may be able to increase this to 150 or decrease it if you have been submitting lots of work recently.
+The parameter ‘FILES’ sets how many files to process in each job in each CSF job array. This is currently set to 10, but I set this to 700 in my final processing.
+
+Multiplying ‘FILES’ and the number of jobs arrays together tells you how many records you will process, so in the version of biobankBatch.sh it will process 100 files (It will make 10 separate jobs each of which will process 10 files. Note that if the input file ‘to_process.txt’ contains more lines than this, only the first 100 lines in this file will actually be read.
+
+For final processing you will want to make sure that the multiplication of JOBS and the number on line 3 is at least the same as the number of records you want to process. 
+
+
+## Additional: Running this code in Anaconda Spyder
+TODO: command line arguments
+iCSF (module files to load)
 
 
