@@ -1,7 +1,7 @@
 # BiobankActivityCSF
 This repo contains code to process the accelerometer CWA files from the UK Biobank activity monitoring study in Python, and optionally on high performance computing infrastructure. This code is an adaption of [biobankAccelerometerAnalysis](https://github.com/activityMonitoring/biobankAccelerometerAnalysis) from Aiden Doherty/University of Oxford.
 
-This code allows you to process the raw accelerometer data in Python, sampled at 100 Hz, as apposed to other versions which typically operate on 5 s epochs.
+This code allows easy processing of the raw (but resampled by interpolation to account for sampling variation) accelerometer data in Python, sampled at 100 Hz, as apposed to operating on 5 s epochs.
 
 This repo also contains scripts to allow this code to run on the [UoM CSF3](http://ri.itservices.manchester.ac.uk/csf3/). These scripts may also work on other high-performance computers that use SGE (which is used on many high-performance computing systems at multiple universities). However, note that some parts of this code are specific to the architecutre of the CSF and may need to be adapted to your specific system. This code can also be run on the [iCSF/incline](http://ri.itservices.manchester.ac.uk/icsf/) (the interative version of the CSF), but the batch scripts will not work on here, and this is recommended only for testing. 
 
