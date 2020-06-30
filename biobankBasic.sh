@@ -2,10 +2,10 @@
 #$ -cwd
 #$ -l mem256
 
-# Set the largest number in the range on line 3 to match the number seperate jobs you want to create
-# This sets the maximum number of jobs that will run simutaneously
-# The optimum value for this depends on demand on the CSF at that point in time
-# For example, if this is set to 100 and FILES is set to 700, then 70,000 files will be processed
+# Basic script to process a single CWA file stored in the data-sets folder on the CSF3
+# This script will copy the file to your current directory, run the processing
+# and then delete the file
+# THIS SCRIPT SHOULD BE RUN FROM THE SCRATCH DIRECTORY
 
 module load apps/binapps/anaconda3/2019.03
 module load tools/java/1.8.0

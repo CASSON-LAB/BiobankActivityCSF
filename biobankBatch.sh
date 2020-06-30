@@ -8,6 +8,8 @@
 # The optimum value for this depends on demand on the CSF at that point in time
 # For example, if this is set to 100 and FILES is set to 700, then 70,000 files will be processed
 
+# This script MUST be run from the scratch directory as it will generate a LOT of temporary files
+
 module load apps/binapps/anaconda3/2019.03
 module load tools/java/1.8.0
 
