@@ -19,7 +19,7 @@ export _JAVA_OPTIONS="-XX:ParallelGCThreads=1 -XX:ParallelCMSThreads=1 -Xmx16G"
 
 # Change FILES to the number of files to process in each thread
 declare -i FILES=10
-for i in `seq 1 $JOBS`; do
+for i in `seq 1 $FILES`; do
   IDX=$((SGE_TASK_ID-1))
   LINENUM=$((IDX*$FILES+i))
   echo "SGE_TASK_ID is $SGE_TASK_ID and LINENUM is $LINENUM"
